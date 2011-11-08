@@ -15,7 +15,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
-CREATE DATABASE IF NOT EXISTS monitor;
 --
 -- Database: `monitor`
 --
@@ -44,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `monitorAttachedServer` (
   `port` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `secretMessage` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `monitorAttachedServer`
@@ -95,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `monitorDeviceAndOid` (
   `needStatisticAndThreshold` enum('N','Y') COLLATE utf8_unicode_ci DEFAULT NULL,
   `errorStatus` enum('N','Y') COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=110 ;
 
 --
 -- Dumping data for table `monitorDeviceAndOid`
@@ -159,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `monitorDeviceList` (
   `emailSent` enum('N','Y') COLLATE utf8_unicode_ci DEFAULT 'N',
   `statusError` enum('N','Y') COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `monitorDeviceList`
@@ -181,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `monitorErrorLog` (
   `ip` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2884 ;
 
 --
 -- Dumping data for table `monitorErrorLog`
@@ -206,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `monitorHourLog` (
   `statisticOid6` bigint(20) DEFAULT NULL,
   `statisticOid7` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7071 ;
 
 --
 -- Dumping data for table `monitorHourLog`
@@ -225,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `monitorOidNameList` (
   `emailAddress` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `needStatisticAndThreshold` enum('N','Y') COLLATE utf8_unicode_ci DEFAULT 'N',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=48 ;
 
 --
 -- Dumping data for table `monitorOidNameList`
@@ -282,7 +281,7 @@ CREATE TABLE IF NOT EXISTS `monitorSample` (
   `oid18` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `oid19` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=36761 ;
 
 --
 -- Dumping data for table `monitorSample`
@@ -302,7 +301,7 @@ CREATE TABLE IF NOT EXISTS `monitorThreshold` (
   `threshold1` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `threshold2` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `monitorThreshold`
@@ -325,7 +324,7 @@ CREATE TABLE IF NOT EXISTS `monitorUserList` (
   `isAdmin` enum('N','Y') COLLATE utf8_unicode_ci DEFAULT NULL,
   `emailAddress` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `monitorUserList`

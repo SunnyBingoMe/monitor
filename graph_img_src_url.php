@@ -11,22 +11,22 @@ require 'database_connection.php';
 require 'sunny_function.php';
 ?>
 <?php
-$deviceIp = $_GET[deviceIp];
-$oidColumnName = $_GET[oidColumnName];
+$deviceIp = $_GET['deviceIp'];
+$oidColumnName = $_GET['oidColumnName'];
 ?>
 <?php
 // need parameters: $threshold1/2 , type; start, end; table, ip, column
-$data = $_SESSION[graphData][$deviceIp][$oidColumnName][data];
+$data = $_SESSION['graphData'][$deviceIp][$oidColumnName]['data'];
 
-if (isset($_SESSION[graphData][$deviceIp][$oidColumnName][threshold1])){
-	$threshold1 = $_SESSION[graphData][$deviceIp][$oidColumnName][threshold1];
+if (isset($_SESSION['graphData'][$deviceIp][$oidColumnName]['threshold1'])){
+	$threshold1 = $_SESSION['graphData'][$deviceIp][$oidColumnName]['threshold1'];
 }
-if (isset($_SESSION[graphData][$deviceIp][$oidColumnName][threshold2])){
-	$threshold2 = $_SESSION[graphData][$deviceIp][$oidColumnName][threshold2];
+if (isset($_SESSION[graphData][$deviceIp][$oidColumnName]['threshold2'])){
+	$threshold2 = $_SESSION[graphData][$deviceIp][$oidColumnName]['threshold2'];
 }
 
-$xMarginPercent = $_SESSION[graphData][$deviceIp][$oidColumnName][xMarginPercent];
-$yMarginPercent = $_SESSION[graphData][$deviceIp][$oidColumnName][yMarginPercent];
+$xMarginPercent = $_SESSION[graphData][$deviceIp][$oidColumnName]['xMarginPercent'];
+$yMarginPercent = $_SESSION[graphData][$deviceIp][$oidColumnName]['yMarginPercent'];
 
 $graphWidth = 1000;
 $graphHeight = 300;
@@ -95,6 +95,6 @@ $graph->setGoalLineColor ( 'fuscia' );
 
 $graph->createGraph ();
 
-unset($_SESSION[graphData][$deviceIp][$oidColumnName]);
+unset($_SESSION['graphData'][$deviceIp][$oidColumnName]);
 
 ?>

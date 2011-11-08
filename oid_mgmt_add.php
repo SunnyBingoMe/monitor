@@ -1,15 +1,15 @@
 <?php 
 session_start();
 if (!isset($_SESSION['isAdmin'])){
-	$_SESSION['loginError'] == '1';
+//	$_SESSION['loginError'] == '1';
 	echo "Login failed.";
 	exit;
 }
-if ($_SESSION['isAdmin'] != 'Y'){
-	$_SESSION['loginError'] == '1';
-	echo "Login failed.";
-	exit;
-}
+//if ($_SESSION['isAdmin'] != 'Y'){
+//	$_SESSION['loginError'] == '1';
+//	echo "Login failed.";
+//	exit;
+//}
 require 'database_connection.php';
 require 'sunny_function.php';
 ?>

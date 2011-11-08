@@ -3,10 +3,10 @@ if (isset($getDatabaseConnectionFilePath)){
 	$databaseConnectionFilePath = __FILE__;
 }else{
 
-$databaseHostName = '127.0.0.1';//hellosweden.db.6009281.hostedresource.com
-$databaseName = "monitor";//GP01
-$userName = "root";//gp01
-$passWord = "toonnalux"; //gp01abc
+$databaseHostName = 'localhost';//hellosweden.db.6009281.hostedresource.com //194.47.155.200
+$databaseName = "PG01";
+$userName = 'root';//"pg01";
+$passWord = 'toonnalux';//"pg01abc";
 
 
 $session = mysql_connect($databaseHostName,$userName,$passWord) or die("ERR: mysql_connect():".mysql_error());

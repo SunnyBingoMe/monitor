@@ -57,7 +57,8 @@ $query = "INSERT INTO $monitorUserList VALUES (NULL,'$newUsername','$cryptedPass
 debugOk($query);
 mysql_query($query,$session) or die("ERR: <b>$query</b> : ".mysql_error());
 
-header("Location: user_mgmt.php?newAdded=$newUsername"); /// Redirect browser 
+header( 'refresh: 3; url=add_user.php' );
+echo "<Center><font size='5'>User is added.</font></Center>";
 exit;// Make sure that code below does not get executed when we redirect. 
 
 ?>

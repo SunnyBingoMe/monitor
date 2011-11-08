@@ -234,7 +234,7 @@ td.bgpctbar
 
 <center>
 <?php 
-if (isset($_GET['isFirstPage'])){
+if (isset($_GET[isFirstPage])){
 	echo <<<isFirstPage
 	<h1><font color='red'>DANGEROUS: YOUR DATABASE CONTENT WILL BE INITIALIZED!</font></h1>
 	<h3>Click "<u>Start Import</u>" to initialize it.</h3>

@@ -3,15 +3,15 @@ session_start ();
 ?><?php
 
 if (! isset ( $_SESSION ['isAdmin'] )) {
-	$_SESSION ['loginError'] == '1';
+//	$_SESSION ['loginError'] == '1';
 	echo "Login failed.";
 	exit ();
 }
-if ($_SESSION ['isAdmin'] != 'Y') {
-	$_SESSION ['loginError'] == '1';
-	echo "Login failed.";
-	exit ();
-}
+//if ($_SESSION ['isAdmin'] != 'Y') {
+//	$_SESSION ['loginError'] == '1';
+//	echo "Login failed.";
+//	exit ();
+//}
 require 'database_connection.php';
 require 'sunny_function.php';
 ?>
@@ -23,15 +23,43 @@ require 'sunny_function.php';
 echo '<script src="http://sunnyboy.me/personal/ua.js" type="text/javascript"></script>';
 ?>
 	<script src="http://sunnyboy.me/personal/ga.js" type="text/javascript"></script>
+	<script language="JavaScript">
+    <?php
+    create_function_setAllCheckBox ();
+    ?>
+    </script>
+    
+    
+<title>SNMP UPS monitor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Tom@Lwis (http://www.lwis.net/free-css-drop-down-menu/)" />
+<meta name="keywords" content=" css, dropdowns, dropdown menu, drop-down, menu, navigation, nav, horizontal, vertical left-to-right, vertical right-to-left, horizontal linear, horizontal upwards, cross browser, internet explorer, ie, firefox, safari, opera, browser, lwis" />
+<meta name="description" content="Clean, standards-friendly, modular framework for dropdown menus" />
+<link href="css/dropdown/themes/default/helper.css" media="screen" rel="stylesheet" type="text/css" />
+
+<!-- Beginning of compulsory code below -->
+<link href="css/dropdown/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="css/dropdown/themes/default/default.css" media="screen" rel="stylesheet" type="text/css" />
 
 </head>
-<script language="JavaScript">
-<?php
-create_function_setAllCheckBox ();
-?>
-</script>
 
+<body>
+
+<h1><img src="http://www.bth.se/web2009/images/head_logo.png"  /></h1>
+<!-- Beginning of compulsory code below -->
+
+<ul id="nav" class="dropdown dropdown-horizontal">
+	<li><a href="home.php">Home</a></li>
+	<li><a href="device_status.php">Devices status</a></li>
+	<li><a href="cpanel.php">Cpanel</a></li>
+	<li><a href="about.php">About</a></li>
+	<li><a href="logout.php">Logout</a></li>
+</ul>
+
+<!-- / END -->
+<br><br><br><br>
 <center>
+<hr>
 <?php
 if ($_SESSION ["$monitorUserListC2Name"] != "root") {
 	$query = "SELECT * FROM $monitorDeviceList WHERE $monitorDeviceListC6Name=\"" . $_SESSION ["$monitorDeviceListC6Name"] . "\" ORDER BY $monitorDeviceListC2Name ";
@@ -87,8 +115,8 @@ while ( $record = mysql_fetch_array ( $recordList ) ) {
 			colspan='<?php
 			echo ($_SESSION ["$monitorUserListC2Name"] == "root") ? 7 : 6?>'>Total number of device records: <?php
 			echo $i?><br />
-		Please type in new numeric oids here, seperate them by
-		newline("Enter").(Max 50 characters for each oid.)<br />
+		<font color='red'>Please type in new numeric oids here, seperate them by newline("Enter").(Max 50 characters for each oid.)<br />
+		Make sure the names you wanted exist in the <i><b>Oid Namestable</b></i> table below, add new names first if they does not.</font><br/>
 		<textarea maxlength='1000' rows='5' cols='95%' name="newOidTextarea"></textarea></td>
 	</tr>
 	<tr>
@@ -213,9 +241,15 @@ echo <<<SESSION_monitorUserListC2Name_root
 		<td>
 SESSION_monitorUserListC2Name_root;
 	
-	input_select("oldName", NULL, $oidNameValueAndNameLabelList);
-	nbsp(15);
-	brn(2);
+	echo "<select name='oldName'>";
+	foreach($oidNameValueAndNameLabelList as $v)
+	{
+		echo "<option value=".$v.">".$v."</option>";
+	}
+	echo "</select>";	
+	//input_select("oldName", NULL, $oidNameValueAndNameLabelList);
+	//nbsp(15);
+	//brn(2);
 	echo <<<SESSION_monitorUserListC2Name_root
 </td>
 	</tr>

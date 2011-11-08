@@ -7,7 +7,8 @@ if (!isset($_SESSION['isAdmin'])){
 }
 require 'database_connection.php';
 require 'sunny_function.php';
-?><?php 
+?>
+<?php 
 $query = "SELECT COUNT(*) FROM $monitorDeviceList ORDER BY $monitorDeviceListC2Name ";
 $recordList = mysql_query($query,$session) or die("ERR: <b>$query</b>: ".mysql_error());
 if ($record = mysql_fetch_array($recordList)){
@@ -124,10 +125,12 @@ $record = mysql_fetch_array($recordList);
 Monitor Status: <?php echo $record[$monitorConfigC2Name]?"<font color='green'>RUNNING ( PID: $record[$monitorConfigC2Name] ) </font>":"<font color='red'>STOPPED</font>"; ?>
 </span>
 <?php brn(2); 
-if ($_SESSION["$monitorUserListC2Name"] == "root"){ ?>
+if ($_SESSION["$monitorUserListC2Name"] == "root"){
+	echo <<<turnMonitorOnOff
+
 	<input id="runIt" type="button" onclick="turnMonitorOnOff(1, 0)" value=" Run it " />
-<!--	<input id="runTest" type="button" onclick="turnMonitorOnOff(1, 1)" value="Run test" />
-	<input id="runTest" type="button" onclick="window.open('php_perl_run_ing.php?runTest=1');" value="Run test" /> -->
+	<input id="runTest" type="button" onclick="turnMonitorOnOff(1, 1)" value="Run test" />
+	<!-- input id="runTest" type="button" onclick="window.open('php_perl_run_ing.php?runTest=1');" value="Run test" /> -->
 	<input id="stopIt" type="button" onclick="turnMonitorOnOff(0, 0)" value=" Stop it " />
 	<br />
 	to test only data sample, run test (200 samples)
@@ -135,12 +138,12 @@ if ($_SESSION["$monitorUserListC2Name"] == "root"){ ?>
 	
 	<form action = "config_ing.php" method = "post">
 	<input name="configType" type="hidden" value="interval" />
-	Sample Interval (sec): <input name="interval" type="text" maxlength="3" value="<?php echo $record[$monitorConfigC1Name] ?>"/>
+	Sample Interval (sec): <input name="interval" type="text" maxlength="3" value="$record[$monitorConfigC1Name]"/>
 	<input type="submit" value=" Ok " />
 	</form>
 	<br/><br/>
 	<font color='red'>!!!!! OBS !!!!!<button onClick="window.open('install/bigdump.php?isFirstPage=1')" value="INITIALIZE SYSTEM" >INITIALIZE SYSTEM</button>DANGEROUS</font>
-<?php 
+turnMonitorOnOff;
 }
 ?>
 </center></body>

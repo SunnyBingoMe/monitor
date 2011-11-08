@@ -16,9 +16,9 @@ require 'sunny_function.php';
 <?php 
 $newIp = trim($_POST["new$monitorDeviceListC2Name"]);
 $newDeviceName = inputText2VariableName($_POST["new$monitorDeviceListC3Name"]);
-$newSnmpVersion = inputText2UserName($_POST["new$monitorDeviceListC3Name"]);
-$newCommunity = trim($_POST["new$monitorDeviceListC3Name"]);
-$newEmailAddress = $_SESSION["$monitorUserListC5Name"];
+$newSnmpVersion = inputText2UserName($_POST["new$monitorDeviceListC4Name"]);
+$newCommunity = trim($_POST["new$monitorDeviceListC5Name"]);
+$newEmailAddress = trim($_POST["new$monitorUserListC5Name"]);
 
 $itemEmpty = array( );
 $itemEmpty[] = $newIp;
@@ -44,7 +44,8 @@ $query = "INSERT INTO $monitorDeviceList VALUES (NULL,'$newIp','$newDeviceName',
 debugOk($query);
 mysql_query($query,$session) or die("ERR: INSERT : ".mysql_error());
 
-header("Location: device_mgmt.php"); /// Redirect browser 
+header( 'refresh: 3; url=add_device.php' );
+echo "<Center><font size='5'>Device is added.</font></Center>";
 exit;// Make sure that code below does not get executed when we redirect. 
 
 ?>

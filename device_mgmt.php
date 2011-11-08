@@ -6,24 +6,44 @@ if (!isset($_SESSION['isAdmin'])){
 	echo "Login failed.";
 	exit;
 }
-if ($_SESSION['isAdmin'] != 'Y'){
-	$_SESSION['loginError'] == '1';
-	echo "Login failed.";
-	exit;
-}
+//if ($_SESSION['isAdmin'] != 'Y'){
+//	$_SESSION['loginError'] == '1';
+//	echo "Login failed.";
+//	exit;
+//}
 require 'database_connection.php';
 require 'sunny_function.php';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<?php
-	//if( stristr($_SERVER['HTTP_ACCEPT_LANGUAGE'],'zh')!=FALSE )
-		echo '<script src="http://sunnyboy.me/personal/ua.js" type="text/javascript"></script>';
-?>
-	<script src="http://sunnyboy.me/personal/ga.js" type="text/javascript"></script>
-	
+<title>SNMP UPS monitor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Tom@Lwis (http://www.lwis.net/free-css-drop-down-menu/)" />
+<meta name="keywords" content=" css, dropdowns, dropdown menu, drop-down, menu, navigation, nav, horizontal, vertical left-to-right, vertical right-to-left, horizontal linear, horizontal upwards, cross browser, internet explorer, ie, firefox, safari, opera, browser, lwis" />
+<meta name="description" content="Clean, standards-friendly, modular framework for dropdown menus" />
+<link href="css/dropdown/themes/default/helper.css" media="screen" rel="stylesheet" type="text/css" />
+
+<!-- Beginning of compulsory code below -->
+<link href="css/dropdown/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="css/dropdown/themes/default/default.css" media="screen" rel="stylesheet" type="text/css" />
 </head>
+<body>
+
+
+<h1><img src="http://www.bth.se/web2009/images/head_logo.png"  /></h1>
+
+<!-- Beginning of compulsory code below -->
+
+<ul id="nav" class="dropdown dropdown-horizontal">
+	<li><a href="home.php">Home</a></li>
+	<li><a href="device_status.php">Devices status</a></li>
+	<li><a href="cpanel.php">Cpanel</a></li>
+	<li><a href="about.php">About</a></li>
+	<li><a href="logout.php">Logout</a></li>
+</ul>
+
+<!-- / END -->
 <center>
 <?php 
 if ($_SESSION["$monitorUserListC2Name"] != "root"){
@@ -33,9 +53,11 @@ if ($_SESSION["$monitorUserListC2Name"] != "root"){
 }
 $recordList = mysql_query($query,$session) or die("ERR: <b>$query</b>: ".mysql_error());
 ?>
+
+
 <table border = '0' width='80%'><form action = "device_mgmt_delete_ing.php" method = "post">
-<tr><th colspan='<?php echo ($_SESSION["$monitorUserListC2Name"] == "root")?7:6 ?>'>Devices</th></tr>
-<tr>
+<tr ><th colspan='<?php echo ($_SESSION["$monitorUserListC2Name"] == "root")?7:6 ?>'><font size='5'>Devices</font></th></tr>
+<tr bgcolor='lavender'>
 <th>ID</th> <th>Device IP</th> <th>Device Name</th> <th>Snmp Config</th> <?php echo ($_SESSION["$monitorUserListC2Name"] == "root")?"<th>Admin Email</th>":"" ?> <th>Status</th> <th>Select to Delete</th> 
 </tr>
 <?php 
@@ -64,21 +86,7 @@ while($record = mysql_fetch_array($recordList)){
 ?>
 <tr><td colspan='<?php echo ($_SESSION["$monitorUserListC2Name"] == "root")?7:6 ?>'>Total number of device records: <?php echo "$i"?><br/><font color='red'>All info in monitor system about the deleted devices will be gone.</font><div align="right"><input type="reset" name="reset" value="Select None" /><input type="submit" name="submitDelete" value="Delete Selected" /></div></td></tr>
 </form></table>
-<hr />
-
-<table border = "0" ><form action = "device_mgmt_add_ing.php" method = "POST">
-<tr><th colspan="2">Add New Device</th></tr>
-<tr><td>Device IP<br /></td><td><input type="text" name="<?php echo"new$monitorDeviceListC2Name"?>" maxlength="40" /></td></tr>
-<tr><td>Device Name<br />(NO Special Character)</td><td><input type="text" name="<?php echo"new$monitorDeviceListC3Name"?>" maxlength="50" /></td></tr>
-<tr><td>SNMP Version</td><td><select name="<?php echo"new$monitorDeviceListC4Name"?>"><option value="1">1</option><option value="2c" selected>2c</option></select></td></tr>
-<tr><td>SNMP Community</td><td><input type="text" name="<?php echo"new$monitorDeviceListC5Name"?>" maxlength="50" /></td></tr>
-<tr><td>Admin's Email</td><td><?php echo $_SESSION["$monitorUserListC5Name"] ?></td></tr>
-<tr><td>No. of Oids</td><td>0</td></tr>
-<tr><td>No. of Statistic Oids</td><td>0</td></tr>
-<tr><td><input type="reset" name="reset" value="Reset" /></td><td><input type="submit" name="submit" value="  Add  " /></td></tr>
-</form></table>	
-
 
 </center>
-
+</body>
 </html>

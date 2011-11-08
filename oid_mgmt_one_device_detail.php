@@ -3,12 +3,12 @@ session_start ();
 ?><?php
 
 if (! isset ( $_SESSION ['isAdmin'] )) {
-	$_SESSION ['loginError'] == '1';
+	//$_SESSION ['loginError'] == '1';
 	echo "Login failed.";
 	exit ();
 }
 if ($_SESSION ['isAdmin'] != 'Y') {
-	$_SESSION ['loginError'] == '1';
+	//$_SESSION ['loginError'] == '1';
 	echo "Login failed.";
 	exit ();
 }
@@ -23,17 +23,33 @@ if (! isset ( $_GET ["ip"] )) {
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<?php
+<title>SNMP UPS monitor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Tom@Lwis (http://www.lwis.net/free-css-drop-down-menu/)" />
+<meta name="keywords" content=" css, dropdowns, dropdown menu, drop-down, menu, navigation, nav, horizontal, vertical left-to-right, vertical right-to-left, horizontal linear, horizontal upwards, cross browser, internet explorer, ie, firefox, safari, opera, browser, lwis" />
+<meta name="description" content="Clean, standards-friendly, modular framework for dropdown menus" />
+<link href="css/dropdown/themes/default/helper.css" media="screen" rel="stylesheet" type="text/css" />
 
-//if( stristr($_SERVER['HTTP_ACCEPT_LANGUAGE'],'zh')!=FALSE )
-echo '<script src="http://sunnyboy.me/personal/ua.js" type="text/javascript"></script>';
-?>
-	<script src="http://sunnyboy.me/personal/ga.js" type="text/javascript"></script>
+<!-- Beginning of compulsory code below -->
+
+<link href="css/dropdown/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="css/dropdown/themes/default/default.css" media="screen" rel="stylesheet" type="text/css" />
+
+<!--[if lt IE 7]>
+<script type="text/javascript" src="js/jquery/jquery.js"></script>
+<script type="text/javascript" src="js/jquery/jquery.dropdown.js"></script>
+<![endif]-->
+
+<!-- / END -->
 
 </head>
 <body>
+<h1><img src="http://www.bth.se/web2009/images/head_logo.png"  /></h1>
+
+<!-- Beginning of compulsory code below -->
+
 <center>
 
 <?php

@@ -2,7 +2,7 @@
 session_start();
 if (!isset($_SESSION['isAdmin'])){
 	$_SESSION['loginError'] == '1';
-	echo "Login failed.";
+	echo "<Center><font size='5' color='red'>Login failed. Please try again.</font></Center>";
 	exit;
 }
 require_once 'database_connection.php';

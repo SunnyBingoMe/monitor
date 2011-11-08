@@ -21,7 +21,7 @@ require 'database_connection.php';
 require_once 'sunny_function.php';
 ?><?php
 
-$query = "UPDATE $monitorConfig SET $monitorConfigC2Name=NULL , $monitorConfigC10Name='1' ";
+$query = "UPDATE $monitorConfig SET $monitorConfigC10Name='1' ";
 $recordList = mysql_query ( $query, $session ) or die ( "ERR: <b>$query</b> : " . mysql_error () );
 
 //echo "stoping";

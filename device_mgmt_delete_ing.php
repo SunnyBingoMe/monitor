@@ -49,7 +49,8 @@ foreach ($_POST['checkbox'] as $value){
 	mysql_query($query,$session) or die("ERR: DELETE: ".mysql_error());	
 }
 
-header("Location: device_mgmt.php"); /// Redirect browser 
+header( 'refresh: 3; url=device_mgmt.php' ); // Redirect browser
+echo "<Center><font size='5' color='red'>Device is deleted.</font></Center>";
 exit;// Make sure that code below does not get executed when we redirect. 
 
 ?>

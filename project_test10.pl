@@ -17,13 +17,13 @@ use IO::Socket::INET;
 my $platform = "mysql";
 my $port = "3306";
 my $dbhost = "localhost";
-my $database = "monitor";#"PG01";
+my $database = "PG01";
 my $tablename = "";
 my $query;
 my $query_handle;
 my (@return_value);
-my $dbuser = 'root';#'pg01';
-my $dbpass = 'toonnalux';#'pg01abc';
+my $dbuser = 'pg01';
+my $dbpass = 'pg01abc';
 
 
 #open (filehandle,"u_p.bin") or die "I am unable to open";
@@ -49,7 +49,7 @@ my $connect = DBI->connect($dsn, $dbuser, $dbpass) or die "Unable to connect: $D
 
 $query = "USE $database";
 $query_handle = $connect->prepare($query);
-$query_handle->execute() or die "Unable to find ups database : $query_handle::errstr\n";
+$query_handle->execute() or die "Unable to find database : $query_handle::errstr\n";
 
 $query = "DELETE FROM monitorSample";
 $query_handle = $connect->prepare($query);

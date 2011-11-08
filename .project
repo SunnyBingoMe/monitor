@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>monitor</name>
+	<name>siavash</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -25,71 +25,4 @@
 		<nature>org.eclipse.php.core.PHPNature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>database_connection_uni.php</name>
-			<type>1</type>
-			<location>H:/Dropbox/1.4ET2439_AppliedMgmt/phase3/code/database_connection_uni.php</location>
-		</link>
-		<link>
-			<name>index.htm</name>
-			<type>1</type>
-			<location>H:/Site/cv/index.htm</location>
-		</link>
-		<link>
-			<name>oid_mgmt.php</name>
-			<type>1</type>
-			<location>H:/Dropbox/1.4ET2439_AppliedMgmt/phase3/code/oid_mgmt.php</location>
-		</link>
-		<link>
-			<name>oid_mgmt_delete_name_ing.php</name>
-			<type>1</type>
-			<location>H:/Dropbox/1.4ET2439_AppliedMgmt/phase3/code/oid_mgmt_delete_name_ing.php</location>
-		</link>
-		<link>
-			<name>phpgraphlib.php</name>
-			<type>1</type>
-			<location>H:/Dropbox/1.4ET2439_AppliedMgmt/phase3/code/phpgraphlib.php</location>
-		</link>
-		<link>
-			<name>phpgraphlib_pie.php</name>
-			<type>1</type>
-			<location>H:/Dropbox/1.4ET2439_AppliedMgmt/phase3/code/phpgraphlib_pie.php</location>
-		</link>
-		<link>
-			<name>phpgraphlib_stacked.php</name>
-			<type>1</type>
-			<location>H:/Dropbox/1.4ET2439_AppliedMgmt/phase3/code/phpgraphlib_stacked.php</location>
-		</link>
-		<link>
-			<name>sunny_function.php</name>
-			<type>1</type>
-			<location>H:/Dropbox/1.4ET2439_AppliedMgmt/phase3/code/sunny_function.php</location>
-		</link>
-		<link>
-			<name>test.php</name>
-			<type>1</type>
-			<location>H:/Dropbox/1.4ET2439_AppliedMgmt/phase3/code/test.php</location>
-		</link>
-		<link>
-			<name>test1.php</name>
-			<type>1</type>
-			<location>H:/Dropbox/1.4ET2439_AppliedMgmt/phase3/code/test1.php</location>
-		</link>
-		<link>
-			<name>user_mgmt_add_ing.php</name>
-			<type>1</type>
-			<location>H:/Dropbox/1.4ET2439_AppliedMgmt/phase3/code/user_mgmt_add_ing.php</location>
-		</link>
-		<link>
-			<name>user_mgmt_delete_ing.php</name>
-			<type>1</type>
-			<location>H:/Dropbox/1.4ET2439_AppliedMgmt/phase3/code/user_mgmt_delete_ing.php</location>
-		</link>
-		<link>
-			<name>install/first.php</name>
-			<type>1</type>
-			<location>H:/Dropbox/1.4ET2439_AppliedMgmt/phase3/code/install/first.php</location>
-		</link>
-	</linkedResources>
 </projectDescription>

@@ -38,7 +38,7 @@ $query = "DELETE FROM $monitorUserList WHERE $monitorUserListC1Name = '$userToBe
 debugOk($query);
 mysql_query($query,$session) or die("ERR: <b>$query</b>: ".mysql_error());	
 
-header("Location: user_mgmt.php"); /// Redirect browser 
+header("Location: user_mgmt.php");
 exit;// Make sure that code below does not get executed when we redirect. 
 
 ?>

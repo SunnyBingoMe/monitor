@@ -45,42 +45,36 @@ function dDebugOk($say) {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////
 function brn($number = 1) {
-	$tStringNbsp = '';
 	for(; $number > 0; $number --) {
 		$tStringNbsp .= "<br />\n";
 	}
 	echo $tStringNbsp;
 }
 function returnBrn($number = 1) {
-	$tStringNbsp = '';
 	for(; $number > 0; $number --) {
 		$tStringNbsp .= "<br />\n";
 	}
 	return $tStringNbsp;
 }
 function n($number = 1) {
-	$tStringNbsp = '';
 	for(; $number > 0; $number --) {
 		$tStringNbsp .= "\n";
 	}
 	echo $tStringNbsp;
 }
 function returnN($number = 1) {
-	$tStringNbsp = '';
 	for(; $number > 0; $number --) {
 		$tStringNbsp .= "\n";
 	}
 	return $tStringNbsp;
 }
 function nbsp($number = 1) {
-	$tStringNbsp = '';
 	for(; $number > 0; $number --) {
 		$tStringNbsp .= "&nbsp;";
 	}
 	echo $tStringNbsp;
 }
 function returnNbsp($number = 1) {
-	$tStringNbsp = '';
 	for(; $number > 0; $number --) {
 		$tStringNbsp .= "&nbsp;";
 	}
@@ -276,32 +270,31 @@ input_button_setAllCheckboxUnselected;
 // hidden 
 function input_hidden($element_name, $aElementValuePairList) {
 	print '<input type="hidden" name="' . $element_name . '" value="';
-	print (isset ( $aElementValuePairList [$element_name] ) ? htmlentities ( $aElementValuePairList [$element_name] ) : '') . '">';
+	print htmlentities ( $aElementValuePairList [$element_name] ) . '">';
 }
 
 // password box
 function input_password($element_name, $aElementValuePairList = array(), $maxlength) {
 	print '<input type="password" maxlength="' . $maxlength . '" name="' . $element_name . '" value="';
-	print (isset ( $aElementValuePairList [$element_name] ) ? htmlentities ( $aElementValuePairList [$element_name] ) : '') . '">';
+	print htmlentities ( $aElementValuePairList [$element_name] ) . '">';
 }
 
 // text box
 function input_text($element_name, $aElementValuePairList = array(), $maxlength) {
 	print '<input type="text" maxlength="' . $maxlength . '" name="' . $element_name . '" value="';
-	
-	print (isset ( $aElementValuePairList [$element_name] ) ? htmlentities ( $aElementValuePairList [$element_name] ) : '') . '">';
+	print htmlentities ( $aElementValuePairList [$element_name] ) . '">';
 }
 
 // submit button
 function input_submit($element_name = "submit", $aElementValuePairList = array("submit"=>" OK ")) {
 	print '<input type="submit" name="' . $element_name . '" value="';
-	print (isset ( $aElementValuePairList [$element_name] ) ? htmlentities ( $aElementValuePairList [$element_name] ) : '') . '"/>';
+	print htmlentities ( $aElementValuePairList [$element_name] ) . '"/>';
 }
 
 // textarea
 function input_textarea($element_name, $aElementValuePairList = array(), $maxlength) {
 	print '<textarea maxlength="' . $maxlength . '" name="' . $element_name . '">';
-	print (isset ( $aElementValuePairList [$element_name] ) ? htmlentities ( $aElementValuePairList [$element_name] ) : '') . '</textarea>';
+	print htmlentities ( $aElementValuePairList [$element_name] ) . '</textarea>';
 }
 
 // radio button or checkbox
@@ -358,7 +351,7 @@ function input_select($element_name, $aElementValuePairList, $aOptionLabelPairLi
 	// print out the <option> tags
 	foreach ( $aOptionLabelPairList as $option => $label ) {
 		print '<option value="' . htmlentities ( $option ) . '"';
-		if (isset($selected_options [$option])) {
+		if ($selected_options [$option]) {
 			print ' selected="selected"';
 		}
 		print '>' . htmlentities ( $label ) . '</option>';

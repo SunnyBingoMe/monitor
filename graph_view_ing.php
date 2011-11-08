@@ -1,9 +1,8 @@
 <?php
 session_start ();
 ?><?php
-
 if (! isset ( $_SESSION ['isAdmin'] )) {
-	$_SESSION ['loginError'] == '1';
+	//$_SESSION ['loginError'] == '1';
 	echo "Login failed.";
 	exit ();
 }
@@ -19,7 +18,7 @@ if (! isset ( $_GET ['deviceIpInDetails'] )) { // not del fro one device, is del
 		exit ();
 	}
 } else {
-	$deviceIpInDetails = $_GET [deviceIpInDetails]; // do not need permission to view it.
+	$deviceIpInDetails = $_GET ['deviceIpInDetails']; // do not need permission to view it.
 
 
 /*if you wanna restrict permission, please uncommnet it.
@@ -38,14 +37,8 @@ if (! isset ( $_GET ['deviceIpInDetails'] )) { // not del fro one device, is del
 
 ?>
 <!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<?php
-//if( stristr($_SERVER['HTTP_ACCEPT_LANGUAGE'],'zh')!=FALSE )
-echo '<script src="http://sunnyboy.me/personal/ua.js" type="text/javascript"></script>';
-?>
-	<script src="http://sunnyboy.me/personal/ga.js" type="text/javascript"></script>
-
 <style>
 <!--
 .leftVerticalLabel {
@@ -57,16 +50,49 @@ echo '<script src="http://sunnyboy.me/personal/ua.js" type="text/javascript"></s
 }
 -->
 </style>
-</head>
 
+<title>SNMP UPS monitor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Tom@Lwis (http://www.lwis.net/free-css-drop-down-menu/)" />
+<meta name="keywords" content=" css, dropdowns, dropdown menu, drop-down, menu, navigation, nav, horizontal, vertical left-to-right, vertical right-to-left, horizontal linear, horizontal upwards, cross browser, internet explorer, ie, firefox, safari, opera, browser, lwis" />
+<meta name="description" content="Clean, standards-friendly, modular framework for dropdown menus" />
+<link href="css/dropdown/themes/default/helper.css" media="screen" rel="stylesheet" type="text/css" />
+
+<!-- Beginning of compulsory code below -->
+
+<link href="css/dropdown/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="css/dropdown/themes/default/default.css" media="screen" rel="stylesheet" type="text/css" />
+
+<!--[if lt IE 7]>
+<script type="text/javascript" src="js/jquery/jquery.js"></script>
+<script type="text/javascript" src="js/jquery/jquery.dropdown.js"></script>
+<![endif]-->
+
+<!-- / END -->
+
+</head>
 <body>
+<h1><img src="http://www.bth.se/web2009/images/head_logo.png"  /></h1>
+
+<!-- Beginning of compulsory code below -->
+
+<ul id="nav" class="dropdown dropdown-horizontal">
+	<li><a href="home.php">Home</a></li>
+	<li><a href="device_status.php">Devices status</a></li>
+	<li><a href="cpanel.php">Cpanel</a></li>
+	<li><a href="about.php">About</a></li>
+	<li><a href="logout.php">Logout</a></li>
+</ul>
+
+<!-- / END -->
+</br></br></br></br>
 <center>
 <?php
 $timeStampColumnName = "timeStamp";
 $ipColumnName = "ip";
 $numberOfValueNeeded = 60;
 
-$oidName = $_GET [oidName];
+$oidName = $_GET ['oidName'];
 
 /*
 $tDateTimeNow = new DateTime();
@@ -75,7 +101,7 @@ $tDateTimeStart = $tDateTimeNow->sub($tDateInterval);
 $timeEnd = $tDateTimeNow->format("Y-m-d H:i:s");
 $timeStart = $tDateTimeStart->format("Y-m-d H:i:s");*/
 
-$viewType = $_GET [viewType];
+$viewType = $_GET ['viewType'];
 if ($viewType == "hour") {
 	$clickIntoViewType = "hour";
 	$tableName = $monitorSample;
@@ -99,13 +125,13 @@ if ($viewType == "hour") {
 	$tDateInterval = 60 * 60 * 24 * 30;
 }
 
-if (! isset ( $_GET [tTimeEnd] )) {
-	$_GET [tTimeEnd] = time ();
+if (! isset ( $_GET ['tTimeEnd'] )) {
+	$_GET ['tTimeEnd'] = time ();
 }
 if (isset ( $_GET ['x'] )) {
-	$graphX = $_GET [x];
+	$graphX = $_GET ['x'];
 	$xPixelWidthAllValue = 921 - 81;
-	$valueNumber = sizeof ( $_SESSION [graphData] [$deviceIpInDetails] [dataKeyForClickInto] );
+	$valueNumber = sizeof ( $_SESSION ['graphData'] [$deviceIpInDetails] ['dataKeyForClickInto'] );
 	$xPixelWidthEachValue = $xPixelWidthAllValue / $valueNumber;
 	$indexOfDataKeyForClickInto = floor ( ($graphX - 81) / $xPixelWidthEachValue );
 	if ($indexOfDataKeyForClickInto < 0) {
@@ -114,8 +140,8 @@ if (isset ( $_GET ['x'] )) {
 	if ($indexOfDataKeyForClickInto > $valueNumber - 1) {
 		$indexOfDataKeyForClickInto = $valueNumber - 1;
 	}
-	$stringOftTimeEnd = $_SESSION [graphData] [$deviceIpInDetails] [dataKeyForClickInto] [$indexOfDataKeyForClickInto];
-	unset($_SESSION [graphData] [$deviceIpInDetails] [dataKeyForClickInto]);
+	$stringOftTimeEnd = $_SESSION ['graphData'] [$deviceIpInDetails] ['dataKeyForClickInto'] [$indexOfDataKeyForClickInto];
+	unset($_SESSION ['graphData'] [$deviceIpInDetails] ['dataKeyForClickInto']);
 	$tTimeEnd = strtotime ( $stringOftTimeEnd );
 	debugOk ( $graphX );
 	debugOk ( "\$indexOfDataKeyForClickInto: ".$indexOfDataKeyForClickInto );
@@ -125,7 +151,7 @@ if (isset ( $_GET ['x'] )) {
 	$tTimeEnd = $tTimeEnd + ($tDateInterval / 2);
 	debugOk ("timetostr \$tTimeEnd final: ".timetostr($tTimeEnd));
 } else {
-	$tTimeEnd = ( int ) $_GET [tTimeEnd];
+	$tTimeEnd = ( int ) $_GET ['tTimeEnd'];
 }
 $tTimeStart = $tTimeEnd - $tDateInterval;
 $timeEnd = timetostr ( $tTimeEnd );
@@ -175,9 +201,9 @@ if (! $numberOfRow) {
 }
 
 echo "<a href=\"graph_view_ing.php?" . (isset ( $deviceIpInDetails ) ? "deviceIpInDetails={$deviceIpInDetails}&" : "") . "tTimeEnd=$olderTTimeEnd&viewType=$viewType&oidName=$oidName\" >Older</a>";
-nbsp ( 4 );
+//nbsp ( 4 );
 echo "$timeStart ~ $timeEnd";
-nbsp ( 4 );
+//nbsp ( 4 );
 echo "<a href=\"graph_view_ing.php?" . (isset ( $deviceIpInDetails ) ? "deviceIpInDetails={$deviceIpInDetails}&" : "") . "tTimeEnd=$newerTTimeEnd&viewType=$viewType&oidName=$oidName\" >Newer</a>";
 echo "<br /><b>";
 if ($viewType == "hour") {
@@ -235,10 +261,10 @@ while ( $record = mysql_fetch_array ( $recordList ) ) { // for each ip (cause ec
 		$data = resizeArrayByProbability ( $data, $probabilityOfInUse );
 		$dataKeyForClickInto = resizeArrayByProbability ( $dataKeyForClickInto, $probabilityOfInUse );
 		
-		$_SESSION [graphData] [$deviceIp] [dataKeyForClickInto] = $dataKeyForClickInto;
-		$_SESSION [graphData] [$deviceIp] [$oidColumnName] [data] = $data;
-		$_SESSION [graphData] [$deviceIp] [$oidColumnName] [xMarginPercent] = 25;
-		$_SESSION [graphData] [$deviceIp] [$oidColumnName] [yMarginPercent] = 8;
+		$_SESSION ['graphData'] [$deviceIp] ['dataKeyForClickInto'] = $dataKeyForClickInto;
+		$_SESSION ['graphData'] [$deviceIp] [$oidColumnName] ['data'] = $data;
+		$_SESSION ['graphData'] [$deviceIp] [$oidColumnName] ['xMarginPercent'] = 25;
+		$_SESSION ['graphData'] [$deviceIp] [$oidColumnName] ['yMarginPercent'] = 8;
 		
 		$query = "SELECT * FROM $monitorThreshold WHERE $monitorThresholdC2Name = '$deviceIp' AND $monitorThresholdC3Name = '$oid' ";
 		$recordList_ = mysql_query ( $query, $session ) or die ( "ERR: <b>$query</b>: " . mysql_error () );
@@ -246,11 +272,11 @@ while ( $record = mysql_fetch_array ( $recordList ) ) { // for each ip (cause ec
 		if ($record) {
 			if ($record [$monitorThresholdC4Name]) {
 				$thresholdSplited = explode ( ":", $record [$monitorThresholdC4Name] );
-				$_SESSION [graphData] [$deviceIp] [$oidColumnName] [threshold1] = $thresholdSplited [1];
+				$_SESSION ['graphData'] [$deviceIp] [$oidColumnName] ['threshold1'] = $thresholdSplited [1];
 			}
 			if ($record [$monitorThresholdC4Name]) {
 				$thresholdSplited = explode ( ":", $record [$monitorThresholdC5Name] );
-				$_SESSION [graphData] [$deviceIp] [$oidColumnName] [threshold2] = $thresholdSplited [1];
+				$_SESSION ['graphData'] [$deviceIp] [$oidColumnName] ['threshold2'] = $thresholdSplited [1];
 			}
 		}
 		
@@ -317,9 +343,9 @@ dataValueTable;
 <hr />
 <?php
 echo "<a href=\"graph_view_ing.php?" . (isset ( $deviceIpInDetails ) ? "deviceIpInDetails={$deviceIpInDetails}&" : "") . "tTimeEnd=$olderTTimeEnd&viewType=$viewType&oidName=$oidName\" >Older</a>";
-nbsp ( 4 );
+//nbsp ( 4 );
 echo "$timeStart ~ $timeEnd";
-nbsp ( 4 );
+//nbsp ( 4 );
 echo "<a href=\"graph_view_ing.php?" . (isset ( $deviceIpInDetails ) ? "deviceIpInDetails={$deviceIpInDetails}&" : "") . "tTimeEnd=$newerTTimeEnd&viewType=$viewType&oidName=$oidName\" >Newer</a>";
 echo "<br /><b>";
 if ($viewType == "hour") {
