@@ -50,7 +50,7 @@ require 'database_connection.php';
 <!-- / END -->
 <br/><br/></br></br>
 <center>
-<h1>SNMP UPS MONITOR</h1> v 11.05<br/>
+<h1>SNMP UPS MONITOR</h1> v 11.11<br/>
 <br/><br/>
 <h3><a href="user_manual.pdf" target="_blank" ><font size='6'>User Manual</font><img src='dl.jpg' width='40'></a></h3>
 <br/><br/>
