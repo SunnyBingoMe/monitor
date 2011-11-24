@@ -88,7 +88,14 @@ for (; $oldMaxOidNumber > $newMaxOidNumber; $oldMaxOidNumber--){
 }
 for (; $oldMaxStatisticOidNumber > $newMaxStatisticOidNumber; $oldMaxStatisticOidNumber--){
 	$oldColumnName = "statisticOid".($oldMaxStatisticOidNumber);
+
 	$query = "ALTER TABLE $monitorHourLog DROP $oldColumnName ";
+	$recordList = mysql_query($query,$session) or die("ERR: <b>$query</b>: ".mysql_error());
+
+	$query = "ALTER TABLE $monitorDayLog DROP $oldColumnName ";
+	$recordList = mysql_query($query,$session) or die("ERR: <b>$query</b>: ".mysql_error());
+
+	$query = "ALTER TABLE $monitorMonthLog DROP $oldColumnName ";
 	$recordList = mysql_query($query,$session) or die("ERR: <b>$query</b>: ".mysql_error());
 }
 
@@ -100,6 +107,12 @@ foreach ($deviceIpList as $deviceIp){
 	mysql_query($query,$session) or die("ERR: <b>$query</b>: ".mysql_error());	
 
 	$query = "DELETE FROM $monitorHourLog WHERE $monitorHourLogC3Name = '$deviceIp' ";
+	mysql_query($query,$session) or die("ERR: <b>$query</b>: ".mysql_error());	
+
+	$query = "DELETE FROM $monitorDayLog WHERE $monitorHourLogC3Name = '$deviceIp' ";
+	mysql_query($query,$session) or die("ERR: <b>$query</b>: ".mysql_error());	
+	
+	$query = "DELETE FROM $monitorMonthLog WHERE $monitorHourLogC3Name = '$deviceIp' ";
 	mysql_query($query,$session) or die("ERR: <b>$query</b>: ".mysql_error());	
 
 	//$query = "DELETE FROM $monitorErrorLog WHERE $monitorErrorLogC3Name = '$deviceIp' ";

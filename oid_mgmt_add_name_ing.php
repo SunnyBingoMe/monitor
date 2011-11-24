@@ -14,8 +14,7 @@ if ($_SESSION['isAdmin'] != 'Y'){
 }
 require 'database_connection.php';
 require 'sunny_function.php';
-?>
-<?php 
+?><?php 
 $newName = inputText2VariableName($_POST['newName']);
 $itemEmpty = array( );
 $itemEmpty[] = $newName;
@@ -44,5 +43,3 @@ mysql_query($query,$session) or die("ERR: <b>$query</b> : ".mysql_error());
 
 header("Location: oid_mgmt.php"); /// Redirect browser 
 exit;// Make sure that code below does not get executed when we redirect. 
-
-?>

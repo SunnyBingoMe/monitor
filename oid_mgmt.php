@@ -146,14 +146,14 @@ $recordList = mysql_query ( $query, $session ) or die ( "ERR: <b>$query</b>: " .
 <table border='0'>
 
 	<tr>
-		<th colspan='5'>Oid Names</th>
+		<th colspan='4'>Oid Names</th>
 	</tr>
 	<tr>
 		<th>ID</th>
 		<th>Oid Name</th>
 		<!-- th>Admin Email</th> -->
 		<th>Statistic</th>
-		<th>History</th>
+		<!-- th>History</th> -->
 		<th>Select to Delete</th>
 	</tr>
 <?php
@@ -173,7 +173,7 @@ while ( $record = mysql_fetch_array ( $recordList ) ) {
 		}
 	}
 	echo "</center></td>";
-	echo "<td><center>";
+/*	echo "<td><center>";
 	if ($record ["$monitorOidNameListC4Name"] == "Y") {
 		if ($_SESSION ["$monitorUserListC2Name"] == 'root') {
 			//$tTimeEnd = time();
@@ -188,7 +188,7 @@ while ( $record = mysql_fetch_array ( $recordList ) ) {
 		echo "N/A";
 	}
 	echo "</center></td>";
-	if ($_SESSION ["$monitorUserListC2Name"] == 'root') {
+*/	if ($_SESSION ["$monitorUserListC2Name"] == 'root') {
 		echo "<td><center><input type='checkbox' name=\"checkbox[]\" value='" . $record ["$monitorOidNameListC2Name"] . "' /></center></td>";
 	} else {
 		echo "<td>Need Root Authority.</td>";
@@ -199,7 +199,7 @@ while ( $record = mysql_fetch_array ( $recordList ) ) {
 $_SESSION ["oidNameAndIsStatisticPairList"] = $oidNameAndIsStatisticPairList;
 ?>
 <tr>
-		<td colspan='5'>Total number of oid name records: <?php
+		<td colspan='4'>Total number of oid name records: <?php
 		echo "$i"?><br />
 		<font color='red'><b>All oids</b> with this name will be deleted.
 		(Affect all users)<br />

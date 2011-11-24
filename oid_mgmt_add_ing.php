@@ -112,6 +112,12 @@ foreach ($deviceIdAndIpPairList as $key=>$value){ //value is ip
 	if ($addedNewStatisticOidNumber > 0){
 		$query = "DELETE FROM $monitorHourLog WHERE $monitorHourLogC3Name = '$value' ";
 		mysql_query($query,$session) or die("ERR: <b>$query</b>: ".mysql_error());	
+		
+		$query = "DELETE FROM $monitorDayLog WHERE $monitorHourLogC3Name = '$value' ";
+		mysql_query($query,$session) or die("ERR: <b>$query</b>: ".mysql_error());	
+
+		$query = "DELETE FROM $monitorMonthLog WHERE $monitorHourLogC3Name = '$value' ";
+		mysql_query($query,$session) or die("ERR: <b>$query</b>: ".mysql_error());	
 	}
 	
 	$query = "UPDATE $monitorDeviceList SET $monitorDeviceListC7Name = $monitorDeviceListC7Name+$addedNewOidNumber , $monitorDeviceListC8Name = $monitorDeviceListC8Name+$addedNewStatisticOidNumber WHERE $monitorDeviceListC2Name='$value' ";
@@ -130,7 +136,14 @@ for (; $oldMaxOidNumber < $newMaxOidNumber; $oldMaxOidNumber++){
 }
 for (; $oldMaxStatisticOidNumber < $newMaxStatisticOidNumber; $oldMaxStatisticOidNumber++){
 	$newColumnName = "statisticOid".($oldMaxStatisticOidNumber + 1);
+
 	$query = "ALTER TABLE $monitorHourLog ADD COLUMN $newColumnName BIGINT ";
+	$recordList = mysql_query($query,$session) or die("ERR: <b>$query</b>: ".mysql_error());
+
+    $query = "ALTER TABLE $monitorDayLog ADD COLUMN $newColumnName BIGINT ";
+	$recordList = mysql_query($query,$session) or die("ERR: <b>$query</b>: ".mysql_error());
+
+    $query = "ALTER TABLE $monitorMonthLog ADD COLUMN $newColumnName BIGINT ";
 	$recordList = mysql_query($query,$session) or die("ERR: <b>$query</b>: ".mysql_error());
 }
 
