@@ -4,6 +4,7 @@ session_start ();
 
 if (! isset ( $_SESSION ['isAdmin'] )) {
 	$_SESSION ['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit ();
 }

@@ -3,7 +3,7 @@ session_start();
 
 if (!isset($_SESSION['isAdmin'])){
 	//$_SESSION["loginError"] == '1';
-	header( 'refresh: 3; url=index.php' );
+	header( 'refresh: 2; url=index.php' );
 	echo "<Center><font size='5' color='red'>Login failed. Please try again.</font></Center>";
 	exit;
 }
@@ -12,7 +12,7 @@ require 'database_connection.php';
 <html>
 <TITLE>Basic config</TITLE>
 <body>
-
+<?php require_once 'body_head.php';?>
 <center>
 <form action="save_config.php" method = "POST">
 

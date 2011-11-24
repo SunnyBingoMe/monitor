@@ -2,7 +2,8 @@
 session_start();
 if (!isset($_SESSION['isAdmin'])){
 //	$_SESSION['loginError'] == '1';
-	echo "Login failed.";
+	header( 'refresh: 2; url=index.php' );
+    echo "Login failed.";
 	exit;
 }
 //if ($_SESSION['isAdmin'] != 'Y'){
@@ -43,7 +44,9 @@ debugOk($_SESSION["deviceIdList_Of_NewOid"]);
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Monitor</title>
 </head>
-<body><center>
+<body>
+<?php require_once 'body_head.php';?>
+<center>
 
 <table border = '0'><form action = "oid_mgmt_add_ing.php" name="oidNameList" method = "POST">
 <tr><td colspan='4'><center><i>Please config each oid.</i></center></td></tr>

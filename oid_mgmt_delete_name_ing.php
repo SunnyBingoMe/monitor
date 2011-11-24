@@ -3,17 +3,20 @@ session_start();
 ?><?php 
 if (!isset($_SESSION['isAdmin'])){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
 if ($_SESSION['isAdmin'] != 'Y'){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
 if (!isset($_POST['deviceIpInDetails'])){ // not del fro one device, is deling one oid name
 	if ($_SESSION['username'] != 'root'){
 		$_SESSION['loginError'] == '1';
+    	header( 'refresh: 2; url=index.php' );
 		echo "Login failed.";
 		exit;
 	}

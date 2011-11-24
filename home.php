@@ -3,7 +3,7 @@ session_start();
 
 if (!isset($_SESSION['isAdmin'])){
 	//$_SESSION["loginError"] == '1';
-	header( 'refresh: 3; url=index.php' );
+	header( 'refresh: 2; url=index.php' );
 	echo "<Center><font size='5' color='red'>Login failed. Please try again.</font></Center>";
 	exit;
 }
@@ -17,22 +17,6 @@ require 'sunny_function.php';
 <head>
 <title>SNMP UPS monitor</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="author" content="Tom@Lwis (http://www.lwis.net/free-css-drop-down-menu/)" />
-<meta name="keywords" content=" css, dropdowns, dropdown menu, drop-down, menu, navigation, nav, horizontal, vertical left-to-right, vertical right-to-left, horizontal linear, horizontal upwards, cross browser, internet explorer, ie, firefox, safari, opera, browser, lwis" />
-<meta name="description" content="Clean, standards-friendly, modular framework for dropdown menus" />
-<link href="css/dropdown/themes/default/helper.css" media="screen" rel="stylesheet" type="text/css" />
-
-<!-- Beginning of compulsory code below -->
-
-<link href="css/dropdown/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
-<link href="css/dropdown/themes/default/default.css" media="screen" rel="stylesheet" type="text/css" />
-
-<!--[if lt IE 7]>
-<script type="text/javascript" src="js/jquery/jquery.js"></script>
-<script type="text/javascript" src="js/jquery/jquery.dropdown.js"></script>
-<![endif]-->
-
-<!-- / END -->
 
 <script type="text/javascript">
 <?php create_function_changeVisibility(); ?>
@@ -60,21 +44,7 @@ function turnMonitorOnOff(isTurningOn, runTest){
 </head>
 <body>
 
-<h1><img src="http://www.bth.se/web2009/images/head_logo.png"  /></h1>
-
-<!-- Beginning of compulsory code below -->
-
-<ul id="nav" class="dropdown dropdown-horizontal">
-	<li><a href="home.php">Home</a></li>
-	<li><a href="device_status.php">Devices status</a></li>
-	<li><a href="cpanel.php">Cpanel</a></li>
-	<li><a href="about.php">About</a></li>
-	<li><a href="logout.php">Logout</a></li>
-</ul>
-
-<!-- / END -->
-</br></br></br></br>
-
+<?php require_once 'body_head.php';?>
 <?php 
 $query = "SELECT COUNT(*) FROM $monitorDeviceList ORDER BY $monitorDeviceListC2Name ";
 $recordList = mysql_query($query,$session) or die("ERR: <b>$query</b>: ".mysql_error());
@@ -127,7 +97,11 @@ while ($record = mysql_fetch_array($recordList)){
 <h2> UPSNMP MONITOR </h2>Version 11.06
 <?php brn(3)?>
 <table>
-<tr><td>Server Time:</td><td><?php echo timetostr(time()); ?></td></tr>
+<tr><td>Server Time:</td><td><?php 
+    $tDateTime = new DateTime();
+    echo $tDateTime->format("Y-m-d H:i:s");
+
+?></td></tr>
 <tr><td>System Devices (Owned/Total):<?php nbsp(5); ?> </td><td><b><?php echo $totalDeviceNumberOwned."/".$totalDeviceNumber; ?></b></td></tr>
 <tr><td>System Status (Total):</td>
 	<td>

@@ -1,7 +1,8 @@
 <?php
 
        require_once "Mail.php";
-print "sadfsdf";
+        
+        print "sadfsdf";
         $from = "temptestsmtp <temptestsmtp@gmail.com>";
         $to = "Sunny <SunnyBoyMe@gmail.com>";
         $subject = "Hi!";

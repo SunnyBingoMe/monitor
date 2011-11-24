@@ -1,5 +1,6 @@
 <html>
 <TITLE>MyRegister Portal login page</TITLE>
+<LINK REL="SHORTCUT ICON" HREF="_.jpg"> 
 <body>
 <center>
 <img src="http://www.bth.se/web2009/images/head_logo.png"/>

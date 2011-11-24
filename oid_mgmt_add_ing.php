@@ -2,11 +2,13 @@
 session_start();
 if (!isset($_SESSION['isAdmin'])){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
 if ($_SESSION['isAdmin'] != 'Y'){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
@@ -39,6 +41,9 @@ if($dbugOk){
 	debug($_SESSION["newOidList"]);
 }
 ?>
+
+<?php require_once 'body_head.php';?>
+
 <center>
 <table border='1'>
 <tr><th>Device</th><th>New Oid</th><th>New Oid Name</th><th>Statistic</th><th>Result</th></tr>

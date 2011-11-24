@@ -3,13 +3,13 @@ session_start ();
 ?><?php
 if (! isset ( $_SESSION ['isAdmin'] )) {
 	//$_SESSION ['loginError'] == '1';
-	echo "Login failed.";
+	header( 'refresh: 2; url=index.php' );
+    echo "Login failed.";
 	exit ();
 }
 require_once 'database_connection.php';
 require_once 'sunny_function.php';
-?>
-<?php
+?><?php
 
 if (! isset ( $_GET ['deviceIpInDetails'] )) { // not del fro one device, is deling one oid name
 	if ($_SESSION ['username'] != 'root') {
@@ -53,39 +53,10 @@ if (! isset ( $_GET ['deviceIpInDetails'] )) { // not del fro one device, is del
 
 <title>SNMP UPS monitor</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="author" content="Tom@Lwis (http://www.lwis.net/free-css-drop-down-menu/)" />
-<meta name="keywords" content=" css, dropdowns, dropdown menu, drop-down, menu, navigation, nav, horizontal, vertical left-to-right, vertical right-to-left, horizontal linear, horizontal upwards, cross browser, internet explorer, ie, firefox, safari, opera, browser, lwis" />
-<meta name="description" content="Clean, standards-friendly, modular framework for dropdown menus" />
-<link href="css/dropdown/themes/default/helper.css" media="screen" rel="stylesheet" type="text/css" />
-
-<!-- Beginning of compulsory code below -->
-
-<link href="css/dropdown/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
-<link href="css/dropdown/themes/default/default.css" media="screen" rel="stylesheet" type="text/css" />
-
-<!--[if lt IE 7]>
-<script type="text/javascript" src="js/jquery/jquery.js"></script>
-<script type="text/javascript" src="js/jquery/jquery.dropdown.js"></script>
-<![endif]-->
-
-<!-- / END -->
 
 </head>
 <body>
-<h1><img src="http://www.bth.se/web2009/images/head_logo.png"  /></h1>
-
-<!-- Beginning of compulsory code below -->
-
-<ul id="nav" class="dropdown dropdown-horizontal">
-	<li><a href="home.php">Home</a></li>
-	<li><a href="device_status.php">Devices status</a></li>
-	<li><a href="cpanel.php">Cpanel</a></li>
-	<li><a href="about.php">About</a></li>
-	<li><a href="logout.php">Logout</a></li>
-</ul>
-
-<!-- / END -->
-</br></br></br></br>
+<?php require_once 'body_head.php';?>
 <center>
 <?php
 $timeStampColumnName = "timeStamp";
@@ -102,27 +73,31 @@ $timeEnd = $tDateTimeNow->format("Y-m-d H:i:s");
 $timeStart = $tDateTimeStart->format("Y-m-d H:i:s");*/
 
 $viewType = $_GET ['viewType'];
-if ($viewType == "hour") {
+if ($viewType == "hour") { //real-time
 	$clickIntoViewType = "hour";
 	$tableName = $monitorSample;
 	$xAxisFormat = "H:i:s";
 	$tDateInterval = 60 * 15 * 1;
-
-} elseif ($viewType == "day") {
+} elseif ($viewType == "day") {// hourly, one day time
 	$clickIntoViewType = "hour";
 	$tableName = $monitorHourLog;
 	$xAxisFormat = "m-d H:i";
 	$tDateInterval = 60 * 60 * 24;
-} elseif ($viewType == "week") {
-	$clickIntoViewType = "day";
-	$tableName = $monitorHourLog;
-	$xAxisFormat = "m-d H:i";
-	$tDateInterval = 60 * 60 * 24 * 7;
-} elseif ($viewType == "month") {
+} elseif ($viewType == "month") { //daily
 	$clickIntoViewType = "week";
-	$tableName = $monitorHourLog;
+	$tableName = $monitorDayLog;
 	$xAxisFormat = "m-d H:i";
 	$tDateInterval = 60 * 60 * 24 * 30;
+} elseif ($viewType == "year") { // monthly
+	$clickIntoViewType = "week";
+	$tableName = $monitorMonthLog;
+	$xAxisFormat = "m-d H:i";
+	$tDateInterval = 60 * 60 * 24 * 30 * 12;
+} elseif ($viewType == "moreYears") { // yearly
+	$clickIntoViewType = "week";
+	$tableName = $monitorMonthLog;
+	$xAxisFormat = "Y-m-d";
+	$tDateInterval = 60 * 60 * 24 * 30 * 12 * 20;
 }
 
 if (! isset ( $_GET ['tTimeEnd'] )) {
@@ -207,13 +182,15 @@ echo "$timeStart ~ $timeEnd";
 echo "<a href=\"graph_view_ing.php?" . (isset ( $deviceIpInDetails ) ? "deviceIpInDetails={$deviceIpInDetails}&" : "") . "tTimeEnd=$newerTTimeEnd&viewType=$viewType&oidName=$oidName\" >Newer</a>";
 echo "<br /><b>";
 if ($viewType == "hour") {
-	echo "QuarterHourly";
+	echo "Real-time";
 } elseif ($viewType == "day") {
-	echo "Daily";
+	echo "Hourly";
 } elseif ($viewType == "week") {
-	echo "Weekly";
+	echo "Daily";
 } elseif ($viewType == "month") {
 	echo "Monthly";
+} else {
+	echo "Yearly";
 }
 echo " View </b>";
 
@@ -349,13 +326,15 @@ echo "$timeStart ~ $timeEnd";
 echo "<a href=\"graph_view_ing.php?" . (isset ( $deviceIpInDetails ) ? "deviceIpInDetails={$deviceIpInDetails}&" : "") . "tTimeEnd=$newerTTimeEnd&viewType=$viewType&oidName=$oidName\" >Newer</a>";
 echo "<br /><b>";
 if ($viewType == "hour") {
-	echo "QuarterHourly";
+	echo "Real-time";
 } elseif ($viewType == "day") {
-	echo "Daily";
+	echo "Hourly";
 } elseif ($viewType == "week") {
-	echo "Weekly";
+	echo "Daily";
 } elseif ($viewType == "month") {
 	echo "Monthly";
+} else {
+	echo "Yearly";
 }
 echo " View </b>";
 ?>

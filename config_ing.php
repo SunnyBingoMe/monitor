@@ -4,16 +4,19 @@ session_start ();
 
 if (! isset ( $_SESSION ['isAdmin'] )) {
 	$_SESSION ['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit ();
 }
 if ($_SESSION ['isAdmin'] != 'Y') {
 	$_SESSION ['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit ();
 }
 if ($_SESSION ['username'] != 'root') {
 	$_SESSION ['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit ();
 }
@@ -26,6 +29,6 @@ if ($_POST[configType] == "interval"){
 	$recordList = mysql_query ( $query, $session ) or die ( "ERR: <b>$query</b> : " . mysql_error () );
 }
 
-header ( "Location: user_home.php" );
+header ( "Location: home.php" );
 exit;
 ?>

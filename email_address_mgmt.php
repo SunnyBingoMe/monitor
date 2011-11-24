@@ -3,6 +3,7 @@ session_start();
 ?><?php 
 if (!isset($_SESSION['isAdmin'])){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
@@ -23,6 +24,9 @@ $aElementValuePairList = array();
 	
 </head>
 <body>
+
+<?php require_once 'body_head.php';?>
+
 <center>
 <table><form action = "email_address_mgmt_change_ing.php" method = "POST">
 <tr><td>Username: </td><td><?php echo $_SESSION["$monitorUserListC2Name"] ?></td></tr>

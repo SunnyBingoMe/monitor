@@ -3,18 +3,20 @@ session_start();
 ?><?php 
 if (!isset($_SESSION['isAdmin'])){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
 if ($_SESSION['isAdmin'] != 'Y'){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
 require 'database_connection.php';
 require 'sunny_function.php';
-?>
-<?php 
+
+
 if (!isset($_POST['submitDelete'])){
 	echo "e ..... what are you doing?"; 
 	mysql_close($session);
@@ -49,8 +51,7 @@ foreach ($_POST['checkbox'] as $value){
 	mysql_query($query,$session) or die("ERR: DELETE: ".mysql_error());	
 }
 
-header( 'refresh: 3; url=device_mgmt.php' ); // Redirect browser
+header( 'refresh: 2; url=device_mgmt.php' ); // Redirect browser
 echo "<Center><font size='5' color='red'>Device is deleted.</font></Center>";
 exit;// Make sure that code below does not get executed when we redirect. 
 
-?>

@@ -2,13 +2,13 @@
 session_start();
 if (!isset($_SESSION['isAdmin'])){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "<Center><font size='5' color='red'>Login failed. Please try again.</font></Center>";
 	exit;
 }
 require_once 'database_connection.php';
 require_once 'sunny_function.php';
-?>
-<?php 
+?><?php 
 if (!isset($_POST['submitDelete'])){
 	$oldEmailAddress = $_SESSION["$monitorUserListC5Name"];
 	$newEmailAddress = trimAnyWhere($_POST['newEmailAddress']);

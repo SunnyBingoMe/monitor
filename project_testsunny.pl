@@ -6,7 +6,7 @@ use DBI;
 use DBD::mysql;
 use Net::SNMP;
 use POSIX;
-use POSIX qw(strftime);
+#use POSIX qw(strftime);
 
 #use Email::Send;
 #use Email::Send::Gmail;
@@ -399,7 +399,7 @@ sub get_callback
     my ($session, $location) = @_;
     my $result = $session->var_bind_list();
     if (!defined $result) {
-		printf localtime;
+		#printf localtime;
 		printf "ERROR: Get request failed for host '%s': %s.\n",
             $session->hostname(), $session->error();
 			

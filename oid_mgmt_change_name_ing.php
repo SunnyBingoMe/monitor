@@ -2,18 +2,19 @@
 session_start();
 if (!isset($_SESSION['isAdmin'])){
 	//$_SESSION['loginError'] == '1';
-	echo "Login failed.";
+	header( 'refresh: 2; url=index.php' );
+    echo "Login failed.";
 	exit;
 }
 if ($_SESSION['isAdmin'] != 'Y'){
 	//$_SESSION['loginError'] == '1';
-	echo "Login failed.";
+	header( 'refresh: 2; url=index.php' );
+    echo "Login failed.";
 	exit;
 }
 require 'database_connection.php';
 require 'sunny_function.php';
-?>
-<?php 
+?><?php 
 $oldName = inputText2VariableName($_POST['oldName']);
 $newName = inputText2VariableName($_POST['newName']);
 $deviceIp = $_POST['deviceIp'];

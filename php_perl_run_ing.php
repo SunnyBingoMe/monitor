@@ -52,7 +52,7 @@ $php_perl_isError = 0;
 if (  $_GET [runTest] == 1 ) {
 	$output = shell_exec( "perl project_test3_2011-05-18_2055.pl" );
 } else {
-	$output = shell_exec ("perl project_test10.pl" );
+	$output = shell_exec ("perl project_test12.pl" );
 }
 
 //$tDateTime = new DateTime();
@@ -62,6 +62,6 @@ $query = "UPDATE $monitorConfig SET $monitorConfigC2Name=NULL ";
 $recordList = mysql_query ( $query, $session ) or die ( "ERR: <b>$query</b> : " . mysql_error () );
 
 //echo ("php will exit");
-/*header ( "Location: user_home.php" );*/
+/*header ( "Location: home.php" );*/
 exit ();
 ?>

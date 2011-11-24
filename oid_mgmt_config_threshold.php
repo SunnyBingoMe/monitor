@@ -3,11 +3,13 @@ session_start();
 ?><?php 
 if (!isset($_SESSION['isAdmin'])){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
 if ($_SESSION['isAdmin'] != 'Y'){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
@@ -39,7 +41,7 @@ if (!isset($_GET['deviceIpInDetails'])){ // not config for one device, is config
 $oidName = $_GET['oidName'];
 ?>
 <!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html><head>
 <?php
 	//if( stristr($_SERVER['HTTP_ACCEPT_LANGUAGE'],'zh')!=FALSE )
 		echo '<script src="http://sunnyboy.me/personal/ua.js" type="text/javascript"></script>';
@@ -50,7 +52,8 @@ $oidName = $_GET['oidName'];
 <?php create_function_changeVisibility(); create_function_changeVisibility(); ?>
 </script>
 
-<body><center>
+</head>
+<body><?php require_once 'body_head.php';?><center>
 
 <form action = "oid_mgmt_config_threshold_ing.php" method = "post"><table>
 

@@ -3,6 +3,7 @@ session_start();
 ?><?php 
 if (!isset($_SESSION['isAdmin'])){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
@@ -19,35 +20,11 @@ require 'sunny_function.php';
 <head>
 <title>SNMP UPS monitor</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="author" content="Tom@Lwis (http://www.lwis.net/free-css-drop-down-menu/)" />
-<meta name="keywords" content=" css, dropdowns, dropdown menu, drop-down, menu, navigation, nav, horizontal, vertical left-to-right, vertical right-to-left, horizontal linear, horizontal upwards, cross browser, internet explorer, ie, firefox, safari, opera, browser, lwis" />
-<meta name="description" content="Clean, standards-friendly, modular framework for dropdown menus" />
-<link href="css/dropdown/themes/default/helper.css" media="screen" rel="stylesheet" type="text/css" />
 
-<!-- Beginning of compulsory code below -->
-<link href="css/dropdown/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
-<link href="css/dropdown/themes/default/default.css" media="screen" rel="stylesheet" type="text/css" />
 </head>
 <body>
-
-
-<h1><img src="http://www.bth.se/web2009/images/head_logo.png"  /></h1>
-
-<!-- Beginning of compulsory code below -->
-
-<ul id="nav" class="dropdown dropdown-horizontal">
-	<li><a href="home.php">Home</a></li>
-	<li><a href="device_status.php">Devices status</a></li>
-	<li><a href="cpanel.php">Cpanel</a></li>
-	<li><a href="about.php">About</a></li>
-	<li><a href="logout.php">Logout</a></li>
-</ul>
-
-<!-- / END -->
-
+<?php require_once 'body_head.php';?>
 <center>
-</br></br></br>
-
 
 <?php 
 

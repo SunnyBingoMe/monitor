@@ -17,14 +17,14 @@ use IO::Socket::INET;
 # MYSQL CONFIG VARIABLES
 my $platform = "mysql";
 my $port = "3306";
-my $dbhost = "monitormysql1988.zapto.org";
+my $dbhost = "127.0.0.1";#"monitormysql1988.zapto.org";
 my $database = "PG01";
 my $tablename = "";
 my $query;
 my $query_handle;
 my (@return_value);
-my $dbuser = 'root';
-my $dbpass = 'toonnalux';
+my $dbuser = 'pg01';#'root';
+my $dbpass = 'pg01abc';#'toonnalux';
 
 
 #open (filehandle,"u_p.bin") or die "I am unable to open";
@@ -223,7 +223,7 @@ for(;;$numSample++)
 		
 		if($numSample1 >= $sampleLimit)
 		{
-			$query = "DELETE FROM monitorSample WHERE ip = '$host[$i]' ORDER BY timeStamp LIMIT 1";
+			$query = "DELETE FROM monitorSample WHERE ip = '$host[$i]' ORDER BY id LIMIT 1";
 			$query_handle = $connect->prepare($query);
 			$query_handle->execute();
 		}
@@ -231,7 +231,7 @@ for(;;$numSample++)
 		
 #		if($houryes == 1)
 #		{
-#			$query = "DELETE FROM monitorSample WHERE ip = '$host[$i]' ORDER BY timeStamp LIMIT 1";
+#			$query = "DELETE FROM monitorSample WHERE ip = '$host[$i]' ORDER BY id LIMIT 1";
 #			$query_handle = $connect->prepare($query);
 #			$query_handle->execute();
 #		}
@@ -240,7 +240,7 @@ for(;;$numSample++)
 		
 #		if($dayyes == 1)
 #		{
-#			$query = "DELETE FROM monitorSample WHERE ip = '$host[$i]' ORDER BY timeStamp LIMIT 1";
+#			$query = "DELETE FROM monitorSample WHERE ip = '$host[$i]' ORDER BY id LIMIT 1";
 #			$query_handle = $connect->prepare($query);
 #			$query_handle->execute();
 #		}
@@ -759,7 +759,7 @@ sub get_hourdata
 		
 		if($numSampleHour > $sampleHourLimit)
 		{
-			$query = "DELETE FROM monitorHourLog WHERE ip = '$_[0]' ORDER BY timeStamp LIMIT 1";
+			$query = "DELETE FROM monitorHourLog WHERE ip = '$_[0]' ORDER BY id LIMIT 1";
 			$query_handle = $connect->prepare($query);
 			$query_handle->execute();
 			#print "hour limit\n";
@@ -842,7 +842,7 @@ sub get_daydata
 		
 		if($numSampleDay > $sampleDayLimit)
 		{
-			$query = "DELETE FROM monitorDayLog WHERE ip = '$_[0]' ORDER BY timeStamp LIMIT 1";
+			$query = "DELETE FROM monitorDayLog WHERE ip = '$_[0]' ORDER BY id LIMIT 1";
 			$query_handle = $connect->prepare($query);
 			$query_handle->execute();
 			#print "hour limit\n";
@@ -928,7 +928,7 @@ sub get_monthdata
 		
 		if($numSampleMonth > $sampleMonthLimit)
 		{
-			$query = "DELETE FROM monitorMonthLog WHERE ip = '$_[0]' ORDER BY timeStamp LIMIT 1";
+			$query = "DELETE FROM monitorMonthLog WHERE ip = '$_[0]' ORDER BY id LIMIT 1";
 			$query_handle = $connect->prepare($query);
 			$query_handle->execute();
 			#print "hour limit\n";
@@ -972,7 +972,7 @@ sub error_check
 	if($noerror > $errorLimit )
 	{
 		$noerror = $errorLimit + 2;
-		$query = "DELETE FROM monitorErrorLog WHERE ip = '$_[0]' ORDER BY timeStamp LIMIT 1";
+		$query = "DELETE FROM monitorErrorLog WHERE ip = '$_[0]' ORDER BY id LIMIT 1";
 		$query_handle = $connect->prepare($query);
 		$query_handle->execute();
 		

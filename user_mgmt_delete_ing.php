@@ -3,11 +3,13 @@ session_start();
 ?><?php 
 if (!isset($_SESSION['isAdmin'])){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
 if ($_SESSION['isAdmin'] != 'Y'){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
@@ -15,11 +17,11 @@ require_once 'database_connection.php';
 require_once 'sunny_function.php';
 if ($_SESSION["$monitorUserListC2Name"] != 'root'){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
-?>
-<?php 
+?><?php 
 if (!isset($_POST['submitDelete'])){
 	echo "e ..... what are you doing?"; 
 	exit;

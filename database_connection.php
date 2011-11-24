@@ -5,8 +5,8 @@ if (isset($getDatabaseConnectionFilePath)){
 
 $databaseHostName = 'localhost';//hellosweden.db.6009281.hostedresource.com //194.47.155.200
 $databaseName = "PG01";
-$userName = 'root';//"pg01";
-$passWord = 'toonnalux';//"pg01abc";
+$userName = "pg01";
+$passWord = "pg01abc";
 
 
 $session = mysql_connect($databaseHostName,$userName,$passWord) or die("ERR: mysql_connect():".mysql_error());
@@ -89,6 +89,18 @@ $monitorHourLogC2Name = "timeStamp";
 $monitorHourLogC3Name = "ip";
 $monitorHourLogCStatisticOidName = "statisticOid";
 
+$monitorDayLog = "monitorDayLog";
+$monitorDayLogC1Name = "id";
+$monitorDayLogC2Name = "timeStamp";
+$monitorDayLogC3Name = "ip";
+$monitorDayLogCStatisticOidName = "statisticOid";
+
+$monitorMonthLog = "monitorMonthLog";
+$monitorMonthLogC1Name = "id";
+$monitorMonthLogC2Name = "timeStamp";
+$monitorMonthLogC3Name = "ip";
+$monitorMonthLogCStatisticOidName = "statisticOid";
+
 
 $monitorErrorLog = "monitorErrorLog";
 $monitorErrorLogC1Name = "id";
@@ -97,4 +109,3 @@ $monitorErrorLogC3Name = "ip";
 $monitorErrorLogC4Name = "description";
 
 }
-?>

@@ -10,14 +10,14 @@ $password = $_POST['pass'];
 $query = "SELECT * FROM $monitorUserList WHERE $monitorUserListC2Name = '$username'";
 $recordList = mysql_query($query,$session) or die("ERR: <b>$query</b>: ".mysql_error());
 if (!($record = mysql_fetch_array($recordList))){
-	header( 'refresh: 3; url=index.php' );
+	header( 'refresh: 2; url=index.php' );
 	echo "<Center><font size='5' color='red'>Login failed. Please try again.</font></Center>";
 	exit; 
 }
 $cryptedPassword = crypt($password, $record["$monitorUserListC3Name"]);
 if ($cryptedPassword != $record["$monitorUserListC3Name"]){
 	//debugOk ($cryptedOldPassword.",".$record["$monitorUserListC3Name"].brn());
-	header( 'refresh: 3; url=index.php' );
+	header( 'refresh: 2; url=index.php' );
 	echo "<Center><font size='5' color='red'>Login failed. Please try again.</font></Center>";
 	exit; 
 }

@@ -4,17 +4,16 @@ session_start ();
 
 if (! isset ( $_SESSION ['isAdmin'] )) {
 	$_SESSION ['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit ();
 }
 require 'database_connection.php';
 require 'sunny_function.php';
-?>
-<?php
+?><?php
 $deviceIp = $_GET['deviceIp'];
 $oidColumnName = $_GET['oidColumnName'];
-?>
-<?php
+?><?php
 // need parameters: $threshold1/2 , type; start, end; table, ip, column
 $data = $_SESSION['graphData'][$deviceIp][$oidColumnName]['data'];
 

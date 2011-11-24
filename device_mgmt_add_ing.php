@@ -2,18 +2,20 @@
 session_start();
 if (!isset($_SESSION['isAdmin'])){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
 if ($_SESSION['isAdmin'] != 'Y'){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
 require 'database_connection.php';
 require 'sunny_function.php';
-?>
-<?php 
+
+
 $newIp = trim($_POST["new$monitorDeviceListC2Name"]);
 $newDeviceName = inputText2VariableName($_POST["new$monitorDeviceListC3Name"]);
 $newSnmpVersion = inputText2UserName($_POST["new$monitorDeviceListC4Name"]);
@@ -44,8 +46,7 @@ $query = "INSERT INTO $monitorDeviceList VALUES (NULL,'$newIp','$newDeviceName',
 debugOk($query);
 mysql_query($query,$session) or die("ERR: INSERT : ".mysql_error());
 
-header( 'refresh: 3; url=add_device.php' );
+header( 'refresh: 2; url=add_device.php' );
 echo "<Center><font size='5'>Device is added.</font></Center>";
 exit;// Make sure that code below does not get executed when we redirect. 
 
-?>

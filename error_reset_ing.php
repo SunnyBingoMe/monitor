@@ -4,26 +4,26 @@ session_start ();
 
 if (! isset ( $_SESSION ['isAdmin'] )) {
 	$_SESSION ['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit ();
 }
 if ($_SESSION ['isAdmin'] != 'Y') {
 	$_SESSION ['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit ();
 }
 require 'database_connection.php';
 require 'sunny_function.php';
-?>
-<?php
+?><?php
 if (! isset ( $_GET ["ip"] )) {
 	echo "e... what are you doing .....";
 	exit ();
 }else {
 	$deviceIp = $_GET ["ip"];
 }
-?>
-<?php 
+?><?php 
 $query = "UPDATE $monitorDeviceList SET $monitorDeviceListC9Name='N', $monitorDeviceListC10Name='N' WHERE $monitorDeviceListC2Name='$deviceIp' ";
 $recordList = mysql_query ( $query, $session ) or die ( "ERR: <b>$query</b>: " . mysql_error () );
 

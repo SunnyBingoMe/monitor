@@ -4,7 +4,8 @@ session_start ();
 
 if (! isset ( $_SESSION ['isAdmin'] )) {
 //	$_SESSION ['loginError'] == '1';
-	echo "Login failed.";
+	header( 'refresh: 2; url=index.php' );
+    echo "Login failed.";
 	exit ();
 }
 //if ($_SESSION ['isAdmin'] != 'Y') {
@@ -20,22 +21,6 @@ require 'sunny_function.php';
 <head>
 <title>SNMP UPS monitor</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="author" content="Tom@Lwis (http://www.lwis.net/free-css-drop-down-menu/)" />
-<meta name="keywords" content=" css, dropdowns, dropdown menu, drop-down, menu, navigation, nav, horizontal, vertical left-to-right, vertical right-to-left, horizontal linear, horizontal upwards, cross browser, internet explorer, ie, firefox, safari, opera, browser, lwis" />
-<meta name="description" content="Clean, standards-friendly, modular framework for dropdown menus" />
-<link href="css/dropdown/themes/default/helper.css" media="screen" rel="stylesheet" type="text/css" />
-
-<!-- Beginning of compulsory code below -->
-
-<link href="css/dropdown/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
-<link href="css/dropdown/themes/default/default.css" media="screen" rel="stylesheet" type="text/css" />
-
-<!--[if lt IE 7]>
-<script type="text/javascript" src="js/jquery/jquery.js"></script>
-<script type="text/javascript" src="js/jquery/jquery.dropdown.js"></script>
-<![endif]-->
-
-<!-- / END -->
 
 </head>
 
@@ -47,9 +32,7 @@ create_function_setAllCheckBox ();
 
 <body>
 
-<h1><img src="http://www.bth.se/web2009/images/head_logo.png"  /></h1>
-
-<!-- Beginning of compulsory code below -->
+<?php require_once 'body_head.php';?>
 
 
 <center>

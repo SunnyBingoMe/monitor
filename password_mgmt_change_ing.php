@@ -2,6 +2,7 @@
 session_start();
 if (!isset($_SESSION['isAdmin'])){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
@@ -9,8 +10,7 @@ header( 'refresh: 2; url=home.php' );
 
 require 'database_connection.php';
 //require 'sunny_function.php';
-?>
-<?php 
+?><?php 
 $oldPassword = $_POST['oldPassword'];
 $newPassword = $_POST['newPassword'];
 $cryptedNewPassword = crypt($newPassword, '$1$Sunny_Cr$');

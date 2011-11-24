@@ -3,7 +3,8 @@ session_start();
 ?><?php 
 if (!isset($_SESSION['isAdmin'])){
 	//$_SESSION['loginError'] == '1';
-	echo "Login failed.";
+	header( 'refresh: 2; url=index.php' );
+    echo "Login failed.";
 	exit;
 }
 //if ($_SESSION['isAdmin'] != 'Y'){

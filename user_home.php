@@ -1,4 +1,8 @@
 <?php 
+header("Location: home.php");
+exit;
+?>
+<?php 
 session_start();
 if (!isset($_SESSION['isAdmin'])){
 	$_SESSION['loginError'] == '1';
@@ -57,7 +61,7 @@ while ($record = mysql_fetch_array($recordList)){
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<?php
+<?php 
 	//if( stristr($_SERVER['HTTP_ACCEPT_LANGUAGE'],'zh')!=FALSE )
 		echo '<script src="http://sunnyboy.me/personal/ua.js" type="text/javascript"></script>';
 ?>

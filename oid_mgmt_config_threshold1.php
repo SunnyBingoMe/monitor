@@ -3,12 +3,14 @@ session_start();
 ?><?php 
 if (!isset($_SESSION['isAdmin'])){
 	//$_SESSION['loginError'] == '1';
-	echo "Login failed.";
+	header( 'refresh: 2; url=index.php' );
+    echo "Login failed.";
 	exit;
 }
 if ($_SESSION['isAdmin'] != 'Y'){
 	//$_SESSION['loginError'] == '1';
-	echo "Login failed.";
+	header( 'refresh: 2; url=index.php' );
+    echo "Login failed.";
 	exit;
 }
 require 'database_connection.php';
@@ -50,7 +52,9 @@ $oidName = $_GET['oidName'];
 <?php create_function_changeVisibility(); create_function_changeVisibility(); ?>
 </script>
 
-<body><center>
+<body>
+<?php require_once 'body_head.php';?>
+<center>
 
 <form action = "oid_mgmt_config_threshold_ing.php" method = "post"><table>
 

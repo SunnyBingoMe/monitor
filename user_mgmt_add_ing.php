@@ -2,11 +2,13 @@
 session_start();
 if (!isset($_SESSION['isAdmin'])){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
 if ($_SESSION['isAdmin'] != 'Y'){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
@@ -14,11 +16,11 @@ require 'database_connection.php';
 require 'sunny_function.php';
 if ($_SESSION["$monitorUserListC2Name"] != 'root'){
 	$_SESSION['loginError'] == '1';
+	header( 'refresh: 2; url=index.php' );
 	echo "Login failed.";
 	exit;
 }
-?>
-<?php 
+?><?php 
 $newUserType = $_POST['newUserType'];
 if ($newUserType == 'admin'){
 	$newUserTypeIsAdmin = 'Y';
@@ -57,7 +59,7 @@ $query = "INSERT INTO $monitorUserList VALUES (NULL,'$newUsername','$cryptedPass
 debugOk($query);
 mysql_query($query,$session) or die("ERR: <b>$query</b> : ".mysql_error());
 
-header( 'refresh: 3; url=add_user.php' );
+header( 'refresh: 2; url=add_user.php' );
 echo "<Center><font size='5'>User is added.</font></Center>";
 exit;// Make sure that code below does not get executed when we redirect. 
 
