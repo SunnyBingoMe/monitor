@@ -12,11 +12,12 @@ require_once 'database_connection.php';
 //require_once 'sunny_function.php';
 ?><?php 
 if (! isset ( $_GET ['deviceIpInDetails'] )) { // not del fro one device, is deling one oid name
-	//if ($_SESSION ['username'] != 'root') {
-	//	$_SESSION ['loginError'] == '1';
-		echo "Login failed.";
-		exit ();
-	//}
+	if ($_SESSION ['username'] != 'root') {
+    	$_SESSION ['loginError'] == '1';
+    	header( 'refresh: 2; url=index.php' );
+        echo "Login failed.";
+    	exit ();
+    }
 } else {
 	$deviceIpInDetails = $_GET ['deviceIpInDetails']; // do not need permission to view it.
 	
@@ -31,7 +32,7 @@ if (! isset ( $_GET ['deviceIpInDetails'] )) { // not del fro one device, is del
 	//	}
 	//}
 }
-$offset = $_GET['offset'];
+$offset = ($_GET['offset'] ? $_GET['offset'] : 0);
 $newerOffset = $offset - 30;
 $olderOffset = $offset + 30;
 ?>

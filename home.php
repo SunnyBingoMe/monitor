@@ -94,7 +94,7 @@ while ($record = mysql_fetch_array($recordList)){
 
 <center>
 
-<h2> UPSNMP MONITOR </h2>Version 11.06
+<h2> UPSNMP MONITOR </h2>Version 11.05
 <?php brn(3)?>
 <table>
 <tr><td>Server Time:</td><td><?php 

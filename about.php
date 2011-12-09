@@ -21,11 +21,13 @@ require 'database_connection.php';
 
 <?php require_once 'body_head.php';?>
 <center>
-<h1>SNMP UPS MONITOR</h1> v 11.11<br/>
+<h1>SNMP UPS MONITOR</h1> v 11.05<br/>
 <br/><br/>
-<h3><a href="user_manual.pdf" target="_blank" ><font size='6'>User Manual</font><img src='dl.jpg' width='40'></a></h3>
-<br/><br/>
+<h3><a href="user_manual.pdf" target="_blank" ><font size='6'>User Manual (new)</font><img src='dl.jpg' width='40'></a></h3>
 <font size="+1">
+<a href="user_manual_old.pdf" target="_blank" ><font size='6'>User Manual (old)</font><img src='dl.jpg' width='40'></a>
+<br/><br/>
+
 <a href="http://SunnyBoy.Me" target="_blank">Sunny</a><a href="mailto:BinSun@mail.com" ><img src="BinSun_mail_g.png" /></a><br/>
 <a href="mailto:siavash.outadi@gmail.com">Siavash</a><a href="mailto:siavash.outadi@gmail.com" ><img src="Siavash_g.png" /></a><br/>
 </font>

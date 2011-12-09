@@ -146,6 +146,20 @@ require 'database_connection.php';
 
 
 <div style='position: absolute; top: 1250px; left: 250px;width:750px; background: lavender'>
+	<font size = '4'>  View Errors</font>
+</div>
+<div style='position: absolute; top: 1300px; left: 350px;'>
+	<a href='error_view_ing.php'><img src='err.jpg' width='80' height='80' />
+</div>
+<div style='position: absolute; top: 1400px; left: 325px;'>
+	<font size = '3'>  View Errors</font></a>
+</div>
+
+
+
+
+
+<div style='position: absolute; top: 1450px; left: 250px;width:750px; background: lavender'>
 	<font size = '2'>Cpanel v1.0</font>
 </div>
 

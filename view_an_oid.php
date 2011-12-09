@@ -21,7 +21,11 @@ echo '<script src="http://sunnyboy.me/personal/ua.js" type="text/javascript"></s
 	<script src="http://sunnyboy.me/personal/ga.js" type="text/javascript"></script>
 
 </head>
-<body><center>
+<body>
+
+<?php require_once 'body_head.php';?>
+
+<center>
 
 <form action="graph_view_ing.php">
 <?php 
