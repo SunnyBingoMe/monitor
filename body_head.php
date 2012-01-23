@@ -14,6 +14,7 @@
 	<li><a href="cpanel.php">Cpanel</a></li>
 	<li><a href="about.php">About</a></li>
 	<li><a href="logout.php">Logout</a></li>
+	<li><a href="<?php echo $_SERVER["HTTP_REFERER"] ?>">Back</a></li>
 </ul>
 
 <!-- / END -->
