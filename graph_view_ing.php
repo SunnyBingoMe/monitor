@@ -77,7 +77,7 @@ if ($viewType == "hour") { //real-time
 	$clickIntoViewType = "hour";
 	$tableName = $monitorSample;
 	$xAxisFormat = "H:i:s";
-	$tDateInterval = 60 * 15 * 1;
+	$tDateInterval = 60 * 15 * 2;
 } elseif ($viewType == "day") {// hourly, one day time
 	$clickIntoViewType = "hour";
 	$tableName = $monitorHourLog;
@@ -86,12 +86,12 @@ if ($viewType == "hour") { //real-time
 } elseif ($viewType == "month") { //daily
 	$clickIntoViewType = "week";
 	$tableName = $monitorDayLog;
-	$xAxisFormat = "m-d H:i";
+	$xAxisFormat = "Y-m-d H:i";
 	$tDateInterval = 60 * 60 * 24 * 30;
 } elseif ($viewType == "year") { // monthly
 	$clickIntoViewType = "week";
 	$tableName = $monitorMonthLog;
-	$xAxisFormat = "m-d H:i";
+	$xAxisFormat = "Y-m-d H:i";
 	$tDateInterval = 60 * 60 * 24 * 30 * 12;
 } elseif ($viewType == "moreYears") { // yearly
 	$clickIntoViewType = "week";
@@ -102,6 +102,9 @@ if ($viewType == "hour") { //real-time
 
 if (! isset ( $_GET ['tTimeEnd'] )) {
 	$_GET ['tTimeEnd'] = time ();
+	if ($viewType == "hour") { //real-time
+	    $_GET ['tTimeEnd'] += 60 * 15 * 1;
+	}
 }
 if (isset ( $_GET ['x'] )) {
 	$graphX = $_GET ['x'];
@@ -180,19 +183,30 @@ echo "<a href=\"graph_view_ing.php?" . (isset ( $deviceIpInDetails ) ? "deviceIp
 echo "$timeStart ~ $timeEnd";
 //nbsp ( 4 );
 echo "<a href=\"graph_view_ing.php?" . (isset ( $deviceIpInDetails ) ? "deviceIpInDetails={$deviceIpInDetails}&" : "") . "tTimeEnd=$newerTTimeEnd&viewType=$viewType&oidName=$oidName\" >Newer</a>";
-echo "<br /><b>";
-if ($viewType == "hour") {
-	echo "Real-time";
-} elseif ($viewType == "day") {
-	echo "Hourly";
-} elseif ($viewType == "week") {
-	echo "Daily";
-} elseif ($viewType == "month") {
-	echo "Monthly";
-} else {
-	echo "Yearly";
+
+function echoNavigator($viewType) {
+    echo "<br /><b>";
+    if ($viewType == "hour") {
+    	echo "Real-time";
+    } elseif ($viewType == "day") {
+    	echo "Hourly";
+    } elseif ($viewType == "week") {
+    	echo "";
+    } elseif ($viewType == "month") {
+    	echo "Daily";
+    } elseif ($viewType == "year") {
+    	echo "Monthly";
+    } else {
+    	echo "Yearly";
+    }
+    echo " View </b>";
+    if ( ($viewType == "year") || ($viewType == "moreYears") ) {
+        ?>
+        <font color='red'>(WARNNING: insufficient data, please keep the monitor running.)</font>
+        <?php 
+    }
 }
-echo " View </b>";
+echoNavigator($viewType);
 
 while ( $record = mysql_fetch_array ( $recordList ) ) { // for each ip (cause ecach ip could not have the same oidName twice 
 	debugOk ( $record );
@@ -214,10 +228,11 @@ while ( $record = mysql_fetch_array ( $recordList ) ) { // for each ip (cause ec
 	}
 	
 	$data = $dataKeyForClickInto = array ();
-	$query = "SELECT * FROM $tableName WHERE $ipColumnName = '$deviceIp' AND $timeStampColumnName > '$timeStart' AND $timeStampColumnName < '$timeEnd' ORDER BY 'id' ";
+	$query = "SELECT * FROM $tableName WHERE $ipColumnName = '$deviceIp' AND $timeStampColumnName > '$timeStart' AND $timeStampColumnName < '$timeEnd' ORDER BY `timeStamp` ASC  ";
 	debugOk ( $query );
 	$recordList_ = mysql_query ( $query, $session ) or die ( "ERR: <b>$query</b>: " . mysql_error () );
 	while ( $record = mysql_fetch_array ( $recordList_ ) ) {
+	    debugOk($record);
 		$key = new DateTime ( $record [$timeStampColumnName] );
 		$dataKeyForClickInto [] = $key->format ( "Y-m-d H:i:s" );
 		$key = $key->format ( $xAxisFormat );
@@ -324,19 +339,9 @@ echo "<a href=\"graph_view_ing.php?" . (isset ( $deviceIpInDetails ) ? "deviceIp
 echo "$timeStart ~ $timeEnd";
 //nbsp ( 4 );
 echo "<a href=\"graph_view_ing.php?" . (isset ( $deviceIpInDetails ) ? "deviceIpInDetails={$deviceIpInDetails}&" : "") . "tTimeEnd=$newerTTimeEnd&viewType=$viewType&oidName=$oidName\" >Newer</a>";
-echo "<br /><b>";
-if ($viewType == "hour") {
-	echo "Real-time";
-} elseif ($viewType == "day") {
-	echo "Hourly";
-} elseif ($viewType == "week") {
-	echo "Daily";
-} elseif ($viewType == "month") {
-	echo "Monthly";
-} else {
-	echo "Yearly";
-}
-echo " View </b>";
+
+echoNavigator($viewType);
+
 ?>
 </center>
 </body>

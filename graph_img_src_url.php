@@ -27,8 +27,8 @@ if (isset($_SESSION[graphData][$deviceIp][$oidColumnName]['threshold2'])){
 $xMarginPercent = $_SESSION[graphData][$deviceIp][$oidColumnName]['xMarginPercent'];
 $yMarginPercent = $_SESSION[graphData][$deviceIp][$oidColumnName]['yMarginPercent'];
 
-$graphWidth = 1000;
-$graphHeight = 300;
+$graphWidth = 1200;
+$graphHeight = 420;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
